@@ -13,7 +13,7 @@ console.log(JSON.stringify(contract.abi));
 const contractAddress = process.env.CONTRACT_ADDRESS;
 const nftContract = new web3.eth.Contract(contract.abi, contractAddress);
 //create transaction
-async function mintNFT(tokenURI) {
+exports.mintNFT = async (tokenURI) => {
   const nonce = await web3.eth.getTransactionCount(PUBLIC_KEY, 'latest'); //get latest nonce
 
   //the transaction
@@ -49,7 +49,4 @@ async function mintNFT(tokenURI) {
     .catch((err) => {
       console.log(' Promise failed:', err);
     });
-}
-mintNFT(
-  'https://gateway.pinata.cloud/ipfs/QmSZm1f5zZYU4J87FJEmbikjnfppCFEPtwf6vMDUcX7jWv'
-);
+};
